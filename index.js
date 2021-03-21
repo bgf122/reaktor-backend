@@ -8,6 +8,7 @@ const facemasksRoute = require('./routes/facemasks');
 const beaniesRoute = require('./routes/beanies');
 const { getAvailability } = require('./service/getAvailability');
 const availabilitiesRoute = require('./routes/availabilities');
+const cors = require('cors');
 
 const PORT = process.env.PORT || 5000;
 
@@ -27,6 +28,8 @@ const updateData = async () => {
 
 updateData();
 
+
+app.use(cors());
 app.use(express.json())
 app.use('/api/gloves', glovesRoute);
 app.use('/api/facemasks', facemasksRoute);
