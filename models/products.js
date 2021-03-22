@@ -25,6 +25,9 @@ const productsSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    availability: {
+        type: String,
+    }
 })
 
 module.exports = mongoose.model('Products', productsSchema);

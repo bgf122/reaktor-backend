@@ -7,13 +7,9 @@ exports.getGloves = async (req, res) => {
     try {
         const response = await fetch(api_url+"gloves")
         const data = await response.json();
-        const gloves = data.map(({id, ...rest}) => ({...rest, _id: id}));
-        try {
-            await Products.insertMany(gloves);
-            console.log('Gloves updated!');
-        } catch (err) {
-            console.log(err);
-        }
+        const gloves = await data.map(({id, ...rest}) => ({...rest, _id: id}));
+        console.log('gloves done');
+        return gloves;     
     } catch (err) {
         console.log(err);
     }
@@ -22,13 +18,9 @@ exports.getBeanies = async (req, res) => {
     try {
         const response = await fetch(api_url+"beanies")
         const data = await response.json();
-        const beanies = data.map(({id, ...rest}) => ({...rest, _id: id}));
-        try {
-            await Products.insertMany(beanies);
-            console.log('Beanies updated!');
-        } catch (err) {
-            console.log(err);
-        }
+        const beanies = await data.map(({id, ...rest}) => ({...rest, _id: id}));
+        console.log('beanies done');
+        return beanies;
     } catch (err) {
         console.log(err);
     }
@@ -37,13 +29,9 @@ exports.getFacemasks = async (req, res) => {
     try {
         const response = await fetch(api_url+"facemasks")
         const data = await response.json();
-        const facemasks = data.map(({id, ...rest}) => ({...rest, _id: id}));
-        try {
-            await Products.insertMany(facemasks);
-            console.log('Facemasks updated!');
-        } catch (err) {
-            console.log(err);
-        }
+        const facemasks = await data.map(({id, ...rest}) => ({...rest, _id: id}));
+        console.log('facemasks done');
+        return facemasks;
     } catch (err) {
         console.log(err);
     }
