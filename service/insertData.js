@@ -13,7 +13,9 @@ exports.insertData = async () => {
     const manufacturers = await products.map(item => item.manufacturer)
         .filter((value, index, self) => self.indexOf(value) === index);
 
-    await getAvailability(products, manufacturers);
+    const data = await getAvailability(products, manufacturers);
+
+    return data;
 }
 
 

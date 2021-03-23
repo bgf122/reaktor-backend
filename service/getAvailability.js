@@ -1,6 +1,5 @@
 const api_url = "https://bad-api-assignment.reaktor.com/v2/availability/";
 const { default: fetch } = require("node-fetch");
-const Products = require('../models/products');
 
 exports.getAvailability = async (products, manufacturers) => {
     try {
@@ -36,8 +35,7 @@ exports.getAvailability = async (products, manufacturers) => {
     } catch (err) {
         console.log(err)
     } finally {
-        await Products.insertMany(products); 
-        console.log('Database up to date!')
+        return products;
     }
     
     

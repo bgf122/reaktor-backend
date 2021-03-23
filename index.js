@@ -7,6 +7,7 @@ const facemasksRoute = require('./routes/facemasks');
 const beaniesRoute = require('./routes/beanies');
 const cors = require('cors');
 const { insertData } = require('./service/insertData');
+const Products = require('./models/products');
 
 const PORT = process.env.PORT || 5000;
 
@@ -15,10 +16,12 @@ mongoose.connect(process.env.DATABASE_URL,{ useNewUrlParser: true, useUnifiedTop
 const db = mongoose.connection;
 db.on('error', (error) => console.error(error));
 db.once('open', () => console.log('Connected to Database'));
-db.dropDatabase(() => console.log('Database dropped'));
 
 const updateData = async () => {
-    await insertData();
+    const products = await insertData();
+    db.dropDatabase(() => console.log('Database dropped'));
+    await Products.insertMany(products);
+    console.log('Database up to date!') 
 }
 
 updateData();
